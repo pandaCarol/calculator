@@ -1,25 +1,35 @@
 import logo from './logo.svg';
 import './App.css';
+import React, { useEffect, useState } from 'react';
+import Headers from './headers';
+import Outputs from './outputs';
+import InputButtons from './inputs';
+
+
 
 function App() {
+  const [inputNum, setinputnum] = useState(0);
+  const [operation, setOperation] = useState("+")
+  const [result, setResult] = useState(0);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Headers />
+      <Outputs result={result} inputNum={inputNum}/>
+      <InputButtons onChange/>
     </div>
   );
+
+
+
+
+
+
+
+
+
+
+  
 }
 
 export default App;
