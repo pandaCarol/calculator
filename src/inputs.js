@@ -9,8 +9,12 @@ function mapButtons(arr) {
                 return "dot";
             case 0:
                 return "num";
+            case "Reset":
+                return "reset";
+            case "=":
+                return "equal";
             default:
-                return "symbol"
+                return "symbol";
         }
     }
 
@@ -21,7 +25,7 @@ function mapButtons(arr) {
     )
   }
 
-const NumButton = () => {
+const NumButton = (obj) => {
     const emptArr = new Array(9).fill(0);
     return(
         <div >
@@ -47,9 +51,9 @@ const ResetEqual = () => {
     return mapButtons(resetEqual);
 }
 
-function InputButtons() {
+function InputButtons(obj) {
     return (
-        <div id="input">
+        <div id="input" onClick={(e) => obj.onClick(e)}>
             <NumButton />
             <DotZeroSlash />
             <DelAddSubMulti />
