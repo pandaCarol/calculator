@@ -1,12 +1,11 @@
 import logo from './logo.svg';
-import './App.css';
+import './app.scss';
 import React, { useEffect, useRef, useState } from 'react';
 import Headers from './headers';
 import Outputs from './outputs';
 import InputButtons from './inputs';
 
-function operation (result, outputs) {
-
+function operation (outputs, result) {
   let previousPow, currentPow, calculater;
   const previous = outputs.slice(0, outputs.length-1);
   const current = result;
@@ -41,28 +40,22 @@ function App() {
     const cur = e.target.value.toString();
     const curClass = e.target.className;
 
-    // result is a string, input value "cur" has been updated to string
-    // input a number -> update the "result" value
+    //result is string. 
     if (curClass === "num") {
-      if (inputs.className === "symbol") {
-        setResult(cur);
+      //override value, if integer starting with zero or just finish a calculation (last input is symbol or equal) 
+      if ((result.startsWith("0") && result.indexOf(".") === -1)|| inputs.className === "symbol") {
+      setResult(cur)
       } else if(inputs.className === "equal"){
         setOutputs("");
         setResult(cur);
       } else{
-        if (result.startsWith("0") && result.indexOf(".") === -1) {
-          setResult(cur);
-        } else {
-          setResult(result + cur);
-        }
-      }
-      
-    }
-    //input a dot
-    if (curClass === "dot") {
-      if (result.indexOf(".") === -1) {
         setResult(result + cur);
       }
+    }
+
+    //avoid input dots twice
+    if (curClass === "dot" && result.indexOf(".") === -1) {
+        setResult(result + cur);
     }
 
     if (curClass === "reset") {
@@ -74,6 +67,7 @@ function App() {
     if (curClass === "del") {
       if (inputs.className === "num") {
         let afterDel;
+        // try to get a string for result[0,n-1];
         try{afterDel = result.slice(0,result.length-1)} catch(e){afterDel = "0"};
         setResult(afterDel);
       }
@@ -83,10 +77,10 @@ function App() {
     }
 
     if (curClass === "symbol") {
-      if (outputs === "" || inputs.className === "symbol" || outputs.indexOf("=") !== -1) {
+      if (outputs === ""|| inputs.className === "symbol" || outputs.indexOf("=") !== -1) {
         setOutputs(result + cur);
       }else{
-        const calResult = operation(result, outputs);
+        const calResult = operation(outputs, result).toString();
         setOutputs(calResult + cur);
         setResult(calResult);
       }
@@ -95,14 +89,14 @@ function App() {
     if (curClass === "equal") {
       if(inputs.value !== "=") {
         setOutputs(outputs + result + "=");
-        setResult(operation(result, outputs));
+        setResult(operation(outputs,result).toString());
       }else {
         let slicePosi;
-        try {slicePosi = Math.max(outputs.indexOf("+"), outputs.indexOf("-"), outputs.indexOf("x"), outputs.indexOf("/"))} catch(e) {};
+        try {slicePosi = Math.max(outputs.lastIndexOf("+"), outputs.lastIndexOf("-"), outputs.lastIndexOf("x"), outputs.lastIndexOf("/"))} catch(e) {};
         const iteralOutputs = result + outputs.slice(slicePosi, slicePosi+1);
         const iteralResult = outputs.slice(slicePosi+1, outputs.length-1);
         setOutputs(iteralOutputs + iteralResult + "=");
-        setResult(operation(iteralResult, iteralOutputs));
+        setResult(operation(iteralOutputs, iteralResult).toString());
       }
     }
 
@@ -118,6 +112,5 @@ function App() {
   );
 
 }
-
 
 export default App;
