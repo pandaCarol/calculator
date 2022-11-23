@@ -1,0 +1,54 @@
+@mixin box-initial ($bg-color: white, $color: black, $size:18px, $font-family:$font-family){
+    box-sizing: border-box;
+    border: 0;
+    margin: 0;
+    background-color: $bg-color;
+    color: $color;
+    size: $size;
+    font-family: $font-family;
+}
+
+@mixin center-display {
+display: flex;
+justify-content: center;
+align-items: center;
+text-align: center;
+}
+
+@mixin font () {
+    font-size: $font-size;
+    font-weight: $font-weight-s;
+    font-family: $font-family;
+  }
+  
+@mixin box-margin-padding ($margin: 0, $padding: 0){
+margin: $margin;
+padding: $padding;
+}
+  
+  //background 
+@mixin bg-img () {
+max-width: 100%;
+height: auto;
+background-repeat: no-repeat;
+}
+  
+  //button 
+@mixin button-img ($imglink, $width, $height){
+width: $width;
+height: $height;
+
+border: none;
+background: transparent;
+
+background-image: $imglink;
+background-repeat: no-repeat;
+}
+  
+@mixin button-hover () {
+cursor: pointer;
+}
+
+@mixin container-inside-box {
+    @include index.box-margin-padding(1rem, 0);
+}

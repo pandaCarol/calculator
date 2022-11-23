@@ -104,7 +104,7 @@ function App() {
   }
 
   return (
-    <div className="App">
+    <div className="app">
       <Headers />
       <Outputs result={result} inputNum={outputs}/>
       <InputButtons onClick={(e) => handelClick(e)} />

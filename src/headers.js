@@ -1,4 +1,5 @@
 import React from "react";
+import "./headers.scss";
 
 const Models = () => {
     const emptArr = new Array(3).fill(0);
