@@ -88,8 +88,9 @@ body {
     @include library.center-display;
 }
 
-.root {
+#root {
     min-width: 1440px;
+    @include library.center-display;
 }
 
 

@@ -1,4 +1,5 @@
 import React from "react";
+import "./inputs.scss";
 
 function mapButtons(arr) {
     const defInputType = (item) => {
@@ -19,16 +20,18 @@ function mapButtons(arr) {
     }
 
     return(
-        arr.map((item) => {
-            return(<button key={item} value={item} className={defInputType(item)}>{item}</button>)
-        })
+        <div>
+            {arr.map((item) => {
+                return(<button key={item} value={item} className={defInputType(item)}>{item}</button>)
+            })} 
+        </div>
     )
   }
 
 const NumButton = (obj) => {
     const emptArr = new Array(9).fill(0);
     return(
-        <div >
+        <div className="numberButton">
             {emptArr.map((item, index) => {
                 return(<button key={index+1} value={index+1} className="num">{index+1}</button>)
             })}
@@ -54,8 +57,10 @@ const ResetEqual = () => {
 function InputButtons(obj) {
     return (
         <div id="input" onClick={(e) => obj.onClick(e)}>
-            <NumButton />
-            <DotZeroSlash />
+            <div className="right">
+                <NumButton />
+                <DotZeroSlash /> 
+            </div>
             <DelAddSubMulti />
             <ResetEqual />
         </div>

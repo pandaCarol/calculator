@@ -5,12 +5,13 @@ const Models = () => {
     const emptArr = new Array(3).fill(0);
     return(
     <>
-        <h2>THEME</h2>
+        <h6>THEME</h6>
         <div>
+            <span id="themeController"></span>
            {emptArr.map((itme, index) => {return (
                 <span key={index}>
-                    {index}
-                    <button value={index}>{index}</button>
+                    {index+1}
+                    <button value={index}></button>
                 </span>
             )})}
         </div>

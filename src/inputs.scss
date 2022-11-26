@@ -1,0 +1,77 @@
+@use "index";
+@use "library";
+
+@mixin button {
+    @include library.box-margin-padding(0.5rem,0);
+    width: 5rem;
+    height: 3rem;
+    border-radius: 0.5rem;
+}
+
+#input {
+    width: 85%;
+    @include library.box-margin-padding(1rem auto, 1rem);
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+
+    font-size: index.$font-size-numbers;
+    background-color: index.$screen-background;
+    border-radius: 6px;
+
+    div {
+        @include library.box-margin-padding(1rem, 0);
+
+        &:nth-child(2) {
+            @include library.box-margin-padding(2rem 1rem 1rem 0, 0);
+            button {
+                @include button;
+            }
+        }
+
+        &:nth-child(3) {
+            display: grid;
+            grid-column: 1/3;
+            position: relative;
+
+            @include library.box-margin-padding(0 1rem 1rem, 0);
+
+            button {
+                @include library.box-margin-padding(0.5rem,0);
+                width: 10rem;
+                height: 3rem;
+                border-radius: 0.5rem;
+
+                &:nth-child(2) {
+                    position: absolute;
+                    right: 0;
+                }
+            }
+        }
+    };
+
+    .right {
+        @include library.box-margin-padding(1rem 0 1rem 1rem, 0);
+        div:nth-child(2) {
+            display: flex;
+            justify-content: flex-start;
+            @include library.box-margin-padding(0 1rem 1rem, 0);
+
+            button {
+                @include button;
+            }
+        } 
+
+        .numberButton {
+            display: flex;
+            flex-wrap: wrap-reverse;
+            justify-content: flex-start;
+            @include library.box-margin-padding(1rem 1rem 0, 0);
+
+            button {
+                @include button;
+            }
+        }
+    }
+}
+
+

@@ -1,0 +1,16 @@
+@use "index";
+@use "library";
+
+#output {
+    width: 85%;
+    text-align: right;
+    @include library.box-margin-padding(1rem auto, 1rem);
+
+    font-size: index.$font-size-numbers;
+    background-color: index.$screen-background;
+    border-radius: 6px;
+
+    div {
+        @include library.box-margin-padding(6px auto, 0);
+    };
+}

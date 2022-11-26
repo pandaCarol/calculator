@@ -1,4 +1,5 @@
 import React from "react";
+import "./outputs.scss";
 
 const Outputs = (obj) => {
     return (
