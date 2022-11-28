@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./headers.scss";
 
 const Models = () => {
@@ -11,7 +11,7 @@ const Models = () => {
            {emptArr.map((itme, index) => {return (
                 <span key={index}>
                     {index+1}
-                    <button value={index}></button>
+                    <button value={index+1}></button>
                 </span>
             )})}
         </div>
@@ -21,6 +21,7 @@ const Models = () => {
 }
 
 function Headers () {
+    
     return (
         <header>
             <h1>calc</h1>

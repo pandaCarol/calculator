@@ -10,7 +10,7 @@ function mapButtons(arr) {
                 return "dot";
             case 0:
                 return "num";
-            case "Reset":
+            case "RESET":
                 return "reset";
             case "=":
                 return "equal";
@@ -50,7 +50,7 @@ const DelAddSubMulti = () => {
 }
 
 const ResetEqual = () => {
-    const resetEqual = ["Reset", "="];
+    const resetEqual = ["RESET", "="];
     return mapButtons(resetEqual);
 }
 

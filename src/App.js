@@ -1,9 +1,11 @@
 import logo from './logo.svg';
 import './app.scss';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useContext, createContext, useState } from 'react';
 import Headers from './headers';
 import Outputs from './outputs';
 import InputButtons from './inputs';
+
+const Themetoggle = createContext(null);
 
 function operation (outputs, result) {
   let previousPow, currentPow, calculater;
@@ -35,6 +37,8 @@ function App() {
   const [outputs, setOutputs] = useState("");
   const [inputs, setInputs] = useState("");
   const [result, setResult] = useState("0");
+  const [theme, setTheme] = useState(1);
+ 
   
   const handelClick = (e) => {
     const cur = e.target.value.toString();
@@ -104,11 +108,14 @@ function App() {
   }
 
   return (
-    <div className="app">
-      <Headers />
-      <Outputs result={result} inputNum={outputs}/>
-      <InputButtons onClick={(e) => handelClick(e)} />
-    </div>
+    <Themetoggle.Provider value={theme}>
+      <div className="app">
+        <Headers onClick={e => setTheme(e.target.value)}/>
+        <Outputs result={result} inputNum={outputs}/>
+        <InputButtons onClick={(e) => handelClick(e)} />
+      </div>
+    </Themetoggle.Provider>
+
   );
 
 }

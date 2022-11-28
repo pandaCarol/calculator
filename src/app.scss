@@ -3,4 +3,17 @@
 
 .app {
     max-width: 40%;
+
+    @media screen and (max-width: 640px) {
+        max-width: 50%;
+    };
+
+    @media screen and (max-width: 570px) {
+        max-width: 60%;
+    };
+
+    @media screen and (max-width: 400px) {
+        max-width: 75%;
+    };
+    
 }

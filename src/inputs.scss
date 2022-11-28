@@ -3,58 +3,102 @@
 
 @mixin button {
     @include library.box-margin-padding(0.5rem,0);
-    width: 5rem;
-    height: 3rem;
+    box-shadow: 0px 3px index.$grayish-orange-key-shadow;
+
+    width: 8vmin;
+    height: 5vmin;
     border-radius: 0.5rem;
+    font-size: min(index.$font-size-button, max(calc(index.$font-size-button * 100vw / 1440px), 16px));
+    
+
+    /*
+    @if calc(100vw /1440px) >= 1 {
+        
+        font-size: index.$font-size-button;
+    } @else if calc(100vw / 1440px) >= 0.3 {
+        font-size: calc(index.$font-size-button * 100vw / 1440px);
+    }*/
+    
+    background-color: index.$light-grayish-orange-key-background;
+    font-weight: index.$font-weight;
+    color: index.$verydark-grayish-blue;
+    border: none;
+
+    &:hover {
+        cursor: pointer;
+        background-color: index.$white;
+    }
 }
 
 #input {
     width: 85%;
-    @include library.box-margin-padding(1rem auto, 1rem);
+    @include library.box-margin-padding(0 auto, 1rem);
     display: grid;
     grid-template-columns: 3fr 1fr;
 
-    font-size: index.$font-size-numbers;
     background-color: index.$screen-background;
     border-radius: 6px;
 
     div {
-        @include library.box-margin-padding(1rem, 0);
 
         &:nth-child(2) {
-            @include library.box-margin-padding(2rem 1rem 1rem 0, 0);
             button {
                 @include button;
+            }
+
+            [value = "DEL"] {
+                font-size: min(16px, max(calc(index.$font-size-button * 100vw / 1440px), 10px));
+                background-color: index.$key-background;
+                box-shadow: 0px 3px index.$key-shadow;
+                color: index.$white;
+
+                &:hover {
+                    background-color: hsl(227, 31%, 69%);
+                }
             }
         }
 
         &:nth-child(3) {
             display: grid;
             grid-column: 1/3;
-            position: relative;
-
-            @include library.box-margin-padding(0 1rem 1rem, 0);
+            grid-template-columns: repeat(2, 1fr);
 
             button {
-                @include library.box-margin-padding(0.5rem,0);
-                width: 10rem;
-                height: 3rem;
+                @include button();
+                @include library.box-margin-padding(0.5rem auto, 0);
+                width: 20vmin;
+                height: 6vmin;
                 border-radius: 0.5rem;
 
+                &:nth-child(1) {
+                    font-size: min(16px, max(calc(index.$font-size-button * 100vw / 1440px), 10px));
+                    background-color: index.$key-background;
+                    box-shadow: 0px 3px index.$key-shadow;
+                    color: index.$white;
+
+                    &:hover {
+                        background-color: hsl(227, 31%, 69%);
+                    }
+                }
+
                 &:nth-child(2) {
-                    position: absolute;
-                    right: 0;
+                    background-color: index.$red-key-background-toggle;
+                    box-shadow: 0px 3px index.$dark-red-key-shadow;
+                    color: index.$white;
+
+                    &:hover {
+                        background-color: hsl(6, 83%, 61%);
+                    }
+
                 }
             }
         }
     };
 
     .right {
-        @include library.box-margin-padding(1rem 0 1rem 1rem, 0);
         div:nth-child(2) {
             display: flex;
-            justify-content: flex-start;
-            @include library.box-margin-padding(0 1rem 1rem, 0);
+            justify-content: space-evenly;
 
             button {
                 @include button;
@@ -64,12 +108,18 @@
         .numberButton {
             display: flex;
             flex-wrap: wrap-reverse;
-            justify-content: flex-start;
-            @include library.box-margin-padding(1rem 1rem 0, 0);
+            justify-content: space-evenly;
 
             button {
                 @include button;
             }
+        }
+
+        &+div {
+            display: inline-flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+
         }
     }
 }
