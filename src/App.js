@@ -1,11 +1,10 @@
 import logo from './logo.svg';
 import './app.scss';
-import React, { useContext, createContext, useState } from 'react';
+import React, { useState } from 'react';
 import Headers from './headers';
 import Outputs from './outputs';
 import InputButtons from './inputs';
-
-const Themetoggle = createContext(null);
+import { UseThemeWrapper, UseToggel } from './themeContextWrapper';
 
 function operation (outputs, result) {
   let previousPow, currentPow, calculater;
@@ -37,10 +36,10 @@ function App() {
   const [outputs, setOutputs] = useState("");
   const [inputs, setInputs] = useState("");
   const [result, setResult] = useState("0");
-  const [theme, setTheme] = useState(1);
+
+  const themeName = UseThemeWrapper();
  
-  
-  const handelClick = (e) => {
+  function handelClick(e) {
     const cur = e.target.value.toString();
     const curClass = e.target.className;
 
@@ -108,14 +107,15 @@ function App() {
   }
 
   return (
-    <Themetoggle.Provider value={theme}>
+    <div className='container' theme={themeName}>
       <div className="app">
-        <Headers onClick={e => setTheme(e.target.value)}/>
-        <Outputs result={result} inputNum={outputs}/>
-        <InputButtons onClick={(e) => handelClick(e)} />
+        <div className='calculater'>
+          <Headers />
+          <Outputs result={result} inputNum={outputs}/>
+          <InputButtons onClick={e => handelClick(e)} />
+        </div>
       </div>
-    </Themetoggle.Provider>
-
+    </div>
   );
 
 }

@@ -10,6 +10,7 @@ function mapButtons(arr) {
                 return "dot";
             case 0:
                 return "num";
+                
             case "RESET":
                 return "reset";
             case "=":

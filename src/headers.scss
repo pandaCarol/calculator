@@ -1,7 +1,7 @@
 @use "index";
 @use "library";
 
-.app header {
+.calculater header {
     text-align: right;
     
     @include library.box-margin-padding (1rem, 2rem 0 0);
@@ -21,7 +21,7 @@
     }
 
     h6 {
-        @include library.box-margin-padding(0 1.5rem, 0);
+        @include library.box-margin-padding(0 0.5rem, 9px 0);
     }
 
     div {
@@ -29,18 +29,40 @@
         position: relative;
         width: 4rem;
         span {
+            position: absolute;
+            z-index: 2;
             font-size: 10px;
             display: inline-block;
             vertical-align: bottom;
+
+            &:nth-child(1) {
+                left: 0;
+                bottom: 0;
+            }
+
+            &:nth-child(2) {
+                left: 20px;
+                bottom: 0;
+            }
+
+            &:nth-child(3) {
+                left: 40px;
+                bottom: 0;
+            }
+
             button {
                 display: block;
-                
+
                 height: 0.8rem;
                 width: 0.8rem;
                 @include library.box-margin-padding(5px 3px 3.5px, 0);
                 background-color: index.$red-key-background-toggle;
                 border-radius: 50%;
                 border: none;
+
+                &[value = "1"] {
+                    opacity: 1;
+                }
                 
                 &:hover {
                     cursor: pointer;
@@ -50,12 +72,12 @@
 
         #themeController {
             position: absolute;
+            z-index: 0;
             width: 100%;
             height: 2em;
             border-radius: 12px;
             right: 0.4px;
             bottom: 0;
-            z-index: -1;
             background-color: index.$toggle-background-keypad-background;
         }
 

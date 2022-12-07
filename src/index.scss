@@ -30,54 +30,54 @@ $verydark-grayish-blue: hsl(221, 14%, 31%);
 $white: hsl(0, 0%, 100%);
 
 //Theme 2
+
+//#### Backgrounds
+
+$Light-gray-main-background: hsl(0, 0%, 90%);
+$Grayish-red-toggle-background-keypad-background: hsl(0, 5%, 81%);
+$Very-light-gray: hsl(0, 0%, 93%); //(screen background),
+
+//#### Keys
+
+$Dark-moderate-cyan: hsl(185, 42%, 37%); //(key background)
+$Very-dar-cyan: hsl(185, 58%, 25%); //(key shadow)
+
+$Orange: hsl(25, 98%, 40%);//(key background, toggle)
+$Dark-orange: hsl(25, 99%, 27%); //(key shadow)
+
+$Light-grayish-yellow: hsl(45, 7%, 89%); //(key background)
+$Dark-grayish-orange: hsl(35, 11%, 61%);//(key shadow)
+
+//#### Text
+
+$Very-dark-grayish-yellow: hsl(60, 10%, 19%);
+$White: hsl(0, 0%, 100%);//(text)
+
+//### Theme 3
+
+//#### Backgrounds
+
+$Very-dark-violet : hsl(268, 75%, 9%); //(main background)
+$Very-dark-violet-toggle:  hsl(268, 71%, 12%); //(toggle background, keypad background, screen background):
+
+
+//#### Keys
+
+$Dark-violet: hsl(281, 89%, 26%); //(key background)
+$Vivid-magenta: hsl(285, 91%, 52%); //(key shadow)
+
+$Pure-cyan: hsl(176, 100%, 44%);//(key background, toggle)
+$Soft-cyan: hsl(177, 92%, 70%); //(key shadow)
+
+$Very-dark-violet: hsl(268, 47%, 21%); //(key background)
+$Dark-magenta: hsl(290, 70%, 36%); //key shadow
+
+//#### Text
+
+$Light-yellow: hsl(52, 100%, 62%);
+$Very-dark-blue: hsl(198, 20%, 13%);
+$White: hsl(0, 0%, 100%);//(text)
 /*
-
-#### Backgrounds
-
-- Light gray (main background): hsl(0, 0%, 90%)
-- Grayish red (toggle background, keypad background): hsl(0, 5%, 81%)
-- Very light gray (screen background): hsl(0, 0%, 93%)
-
-#### Keys
-
-- Dark moderate cyan (key background): hsl(185, 42%, 37%)
-- Very dark cyan (key shadow): hsl(185, 58%, 25%)
-
-- Orange (key background, toggle): hsl(25, 98%, 40%)
-- Dark orange (key shadow): hsl(25, 99%, 27%)
-
-- Light grayish yellow (key background): hsl(45, 7%, 89%)
-- Dark grayish orange (key shadow): hsl(35, 11%, 61%)
-
-#### Text
-
-- Very dark grayish yellow: hsl(60, 10%, 19%)
-- White (text): hsl(0, 0%, 100%)
-
-### Theme 3
-
-#### Backgrounds
-
-- Very dark violet (main background): hsl(268, 75%, 9%)
-- Very dark violet (toggle background, keypad background, screen background): hsl(268, 71%, 12%)
-
-#### Keys
-
-- Dark violet (key background): hsl(281, 89%, 26%)
-- Vivid magenta (key shadow): hsl(285, 91%, 52%)
-
-- Pure cyan (key background, toggle): hsl(176, 100%, 44%)
-- Soft cyan (key shadow): hsl(177, 92%, 70%)
-
-- Very dark violet (key background): hsl(268, 47%, 21%)
-- Dark magenta (key shadow): hsl(290, 70%, 36%)
-
-#### Text
-
-- Light yellow: hsl(52, 100%, 62%)
-- Very dark blue: hsl(198, 20%, 13%)
-- White (text): hsl(0, 0%, 100%)
-
 ## Typography
 
 ### Body Copy
@@ -86,14 +86,158 @@ $white: hsl(0, 0%, 100%);
 
 
 body {
-    @include library.box-initial($main-background,$white, $font-size-numbers, $font-family);
     @include library.center-display;
+    @include library.box-margin-padding(0, 0);
 }
 
+/*
 #root {
+    @include library.box-initial($main-background,$white, $font-size-numbers, $font-family);
+    @include library.center-display;
+    width: 100vw;
+    height: 100vh;
+}*/
+
+.container {
+    @include library.box-initial($main-background,$white, $font-size-numbers, $font-family);
+    @include library.center-display;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+}
+
+.app {
     max-width: 1440px;
     @include library.center-display;
 }
+
+.container {
+    &[theme = "1"] {
+        header{
+            button[value = "2"], button[value = "3"] {
+                opacity: 0;
+            } 
+        }
+    }
+
+
+    &[theme = "2"] {
+        background-color: $Light-gray-main-background;
+        color: $Very-dark-grayish-yellow;
+        
+        #themeController {
+            background-color: $Grayish-red-toggle-background-keypad-background;
+        }
+
+        header{
+            button[value = "1"], button[value = "3"] {
+                opacity: 0;
+            }
+            
+            button[value = "2"] {
+                background-color:  $Orange;
+            }
+        }
+
+        #output {
+            background-color: $Very-light-gray;
+        }
+
+        #input {
+            background-color: $Grayish-red-toggle-background-keypad-background;
+            button, .right .numberButton button, .right div:nth-child(2) button {
+                background-color: $Light-grayish-yellow;
+                box-shadow: 0px 3px $Dark-grayish-orange;
+                color: $Very-dark-grayish-yellow;
+
+                &:hover {
+                    background-color: hsl(0, 100%, 100%);
+                }
+            }
+
+            button[value = "DEL"], button[value = "RESET"]  {
+                background-color: $Dark-moderate-cyan;
+                box-shadow: 0px 3px $Very-dar-cyan;
+                color: $White;
+
+                &:hover {
+                    background-color: hsl(185, 37%, 51%);
+                }
+            }
+
+            button[value = "="] {
+                background-color: $Orange;
+                box-shadow: 0px 3px $Dark-orange;
+                color: $White;
+
+                &:hover {
+                    background-color: hsl(25, 91%, 53%);
+                }
+            }
+        }
+    }
+
+    &[theme = "3"] {
+        background-color: $Very-dark-violet;
+        color: $Light-yellow;
+        
+        #themeController {
+            background-color: $Very-dark-violet-toggle;
+        }
+
+        header{
+            button[value = "1"], button[value = "2"] {
+                opacity: 0;
+            }
+
+            button[value = "3"] {
+                background-color:  $Pure-cyan;
+            }
+        }
+
+        #output {
+            background-color: $Very-dark-violet-toggle;
+        }
+
+        #input {
+            background-color: $Very-dark-violet-toggle;
+            
+            button, .right .numberButton button, .right div:nth-child(2) button {
+                background-color: $Very-dark-violet;
+                box-shadow: 0px 3px $Dark-magenta;
+                color: $Light-yellow;
+
+                &:hover {
+                    background-color: hsl(268, 40%, 34%);
+                }
+            }
+
+            button[value = "DEL"], button[value = "RESET"]  {
+                background-color: $Dark-violet;
+                box-shadow: 0px 3px $Vivid-magenta;
+                color: $White;
+
+                &:hover {
+                    background-color: hsl(281, 68%, 45%);
+                }
+            }
+
+            button[value = "="] {
+                background-color: $Pure-cyan;
+                box-shadow: 0px 3px $Soft-cyan;
+                color: $Very-dark-blue;
+
+                &:hover {
+                    background-color: hsl(176, 98%, 55%);
+                }
+            }
+        }
+    }
+}
+
+
+
+
 
 
 

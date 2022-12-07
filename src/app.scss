@@ -1,10 +1,14 @@
 @use "library";
 @use "index";
 
-.app {
+.calculater {
     max-width: 40%;
+    
+    @media screen and (max-width: 900px) {
+        max-width: 48%;
+    };
 
-    @media screen and (max-width: 640px) {
+    @media screen and (max-width: 690px) {
         max-width: 50%;
     };
 
@@ -17,3 +21,4 @@
     };
     
 }
+

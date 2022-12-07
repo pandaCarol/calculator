@@ -47,7 +47,7 @@
             }
 
             [value = "DEL"] {
-                font-size: min(16px, max(calc(index.$font-size-button * 100vw / 1440px), 10px));
+                font-size: min(14px, max(calc(index.$font-size-button * 100vw / 1440px), 10px));
                 background-color: index.$key-background;
                 box-shadow: 0px 3px index.$key-shadow;
                 color: index.$white;
@@ -71,7 +71,7 @@
                 border-radius: 0.5rem;
 
                 &:nth-child(1) {
-                    font-size: min(16px, max(calc(index.$font-size-button * 100vw / 1440px), 10px));
+                    font-size: min(14px, max(calc(index.$font-size-button * 100vw / 1440px), 10px));
                     background-color: index.$key-background;
                     box-shadow: 0px 3px index.$key-shadow;
                     color: index.$white;
